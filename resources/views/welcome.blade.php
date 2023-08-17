@@ -186,7 +186,8 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
-                            <label for="imageInputQT[{{ $index }}]">                   
+                            <label for="imageInputQT[{{ $index }}]">      
+                                <!-- foreachloop              -->
                                 <div class="image-upload-div text-center mb-20 cp-7 ">
                                     <img src="assets/images/image-plus.png" alt=""  style="height:200px" id="uploadedImageQT[{{ $index }}]" name="quicktipsImage[{{ $index }}]" class="">
                                 </div>
@@ -246,13 +247,14 @@
                             <div class="col-md-3">
                                 <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
 
-                                <label for="imageInputQT[1]">                   
-                                    <div class="image-upload-div text-center mb-20 cp-7 ">
+                                <label for="imageInputQT[1]">   shah g
+                                    <!-- display none wala -->
+                                    <!-- <div class="image-upload-div text-center mb-20 cp-7 ">
                                         <img src="assets/images/image-plus.png" alt="" width="" id="uploadedImageQT[1]" name="quicktipsImage[1]" class="">
-                                    </div>
+                                    </div> -->
                                 </label>
 
-                                <input type="file" name="quicktipsimage[1]"  id="imageInputQT[1]" style="display: none">
+                                <input type="file" name="imageInputQT[1]"  id="imageInputQT[1]" style="display: none">
                    
                             </div>
                             <div class="col-md-8 display-table">
@@ -266,7 +268,6 @@
                 </div>
                 
 
-                <input type="hidden" name="totalllSections" id="totalllSections" value="1">
 
                 <div class="titlle-10 text-color-yellow mr-5 mb-30"><u><h2>+Add a new Tip</h2></u></div>
             </div>
@@ -575,6 +576,8 @@
         addTipButton.addEventListener('click', function() {
             const clonedQuickTips = quickTipsTemplate.cloneNode(true);
             resetInputFields(clonedQuickTips);
+        debugger;
+
             updateTipNumber(clonedQuickTips, tipNumber);
             updateAttributes(clonedQuickTips, tipNumber);
             tipNumber++;
@@ -582,8 +585,6 @@
             clonedQuickTips.style.display = 'block'; // Show the cloned Quick Tips section
             quickTipsTemplate.parentNode.insertBefore(clonedQuickTips, addTipButton);
             
-            const totalSectionsInput = document.getElementById('totalllSections');
-            totalSectionsInput.value = tipNumber - 1;
         });
         
         function resetInputFields(section) {
@@ -610,16 +611,29 @@
             ];
             
             attributesToUpdate.forEach(attribute => {
-                const fieldsWithAttribute = section.querySelectorAll(`[name*="${attribute}[1]"], [id*="${attribute}[1]"]`);
+                const fieldsWithAttribute = section.querySelectorAll(`[name*="${attribute}[1]"], [id*="${attribute}[1]"],[for*="${attribute}[1]"]`);
+                debugger;
                 fieldsWithAttribute.forEach(field => {
-                    field.id = field.id.replace(/\[\d+\]/, `[${number}]`);
-                    field.name = field.name.replace(/\[\d+\]/, `[${number}]`);
+                    if (field.tagName === 'LABEL')
+                    {
+                        field.htmlFor = field.htmlFor.replace(/\[\d+\]/, `[${number}]`);
+                    }
+                    else
+                    {
+                        field.id = field.id.replace(/\[\d+\]/, `[${number}]`);
+                        field.name = field.name.replace(/\[\d+\]/, `[${number}]`);
+                        console.log('id is : ',field.id, ' name is : ',field.name   )
+                    }
                     
                     // Update the "for" attribute of the associated label element
                     if (field.tagName === 'INPUT' && field.type === 'file') {
                         const labelFor = field.getAttribute('id');
-                        const labelElement = document.querySelector(`label[for="${labelFor}"]`);
+                        const labelElement = document.querySelector(`label[for="imageInputQT[1]"]`);
+                        console.log('hi sir *** ', labelElement );
                         if (labelElement) {
+                            console.log('hi sir ***labelElement** ', labelElement );
+                            console.log('hi sir ***labelFor*** ', labelFor );
+
                             labelElement.setAttribute('for', labelFor);
                         }
                     }
@@ -716,7 +730,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const totalSets = 15; // Update this with the total number of sets
+        const totalqtInput = document.getElementById('totalqt'); // Input field for totalqt
+
+        const totalSets = parseInt(totalqtInput.value) || 4; // Update this with the total number of sets
 
         for (let i = 0; i < totalSets; i++) {
             const imageInput = document.getElementById(`imageInputQT[${i}]`);
