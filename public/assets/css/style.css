@@ -1,0 +1,692 @@
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url('../fonts/Proxima-Nova.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+}
+
+.img-responsive {
+    width: 100%;
+    max-width: 100%;
+}
+
+.bg-black {
+    background: #000 !important;
+}
+
+.bg-black-shade {
+    background: #151515;
+}
+
+.bg-yellow {
+    background: #FFA800;
+}
+
+.text-color-black-shade {
+    color: #151515;
+}
+
+.text-color-yellow {
+    color: #FFA800;
+}
+
+.br-3px {
+    border-radius: 3px;
+}
+
+.cp-1 {
+    padding: 102px 112px;
+}
+
+.cp-2 {
+    padding: 11px 0;
+}
+
+.cp-3 {
+    padding: 14px 36px;
+}
+
+.cp-4 {
+    padding: 45px 25px;
+}
+
+.cp-5 {
+    padding: 56px 6%;
+}
+
+.cp-6 {
+    padding: 24px 119px;
+}
+
+.cp-7 {
+    padding: 40px 0px !important;
+}
+
+.dt-0 {
+    height: -webkit-fill-available;
+    width: 100%;
+}
+
+.display-table {
+    display: table;
+}
+
+.vertical-middle {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.vertical-end {
+    vertical-align: bottom;
+    display: table-cell;
+}
+
+.height-100 {
+    height: 100%;
+    display: table-cell;
+}
+
+.align-div-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div-1 {
+    background: #151515;
+    border: 1px solid #FFFFFF;
+    border-radius: 18px;
+    max-width: 668px;
+    width: 100%;
+}
+
+.login-logo {
+    width: 204px;
+}
+
+.title-1 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+}
+
+.title-2 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.title-3 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+}
+
+.title-4 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.title-5 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.title-6 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.title-7 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 49px;
+}
+
+.title-8 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.title-9 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.title-10 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+}
+
+.title-11 {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.myinput {
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+    padding: 15px;
+    width: 100%;
+}
+
+.myinput2 {
+    border: none;
+    border-bottom: 1px solid #FFFFFF;
+    border-radius: 3px;
+    padding: 15px;
+    width: 25%;
+}
+
+.myinput:focus,
+.myinput2:focus,
+.myinput3:focus,
+.myinput5:focus,
+.myinput7:focus,
+.myinput8:focus {
+    outline: none;
+}
+
+.myinput3 {
+    border: none;
+    border-bottom: 1px solid #151515;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.myinput4 {
+    padding: 12px 10px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.myinput5 {
+    border: none;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+    border-radius: 15px;
+    width: 100%;
+    padding: 20px;
+}
+
+.myinput6 {
+    border: none;
+    border: 1px solid #151515;
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
+}
+
+.myinput7 {
+    border: none;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.myinput8 {
+    border: none;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+    border-radius: 6px;
+    padding: 10px 30px;
+}
+
+.mybtn-1 {
+    border: none;
+    width: 100%;
+}
+
+.myhr {
+    border-bottom: 1px solid #151515;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 240px;
+    max-width: 240px;
+    background: #151515;
+    border-radius: 0px 15px 15px 0px;
+    color: #fff;
+    transition: all 0.3s;
+    box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.1);
+}
+
+.sidebardiv {
+    position: sticky;
+    top: 0;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.sidebardiv li {
+    padding: 12px 18px;
+    color: #fff;
+    border-left: 7px solid transparent;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebardiv li a {
+    color: #FFFFFF;
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 40px;
+    margin-left: 20px;
+}
+
+.sidebardiv li svg {
+    width: 32px;
+    height: 32px;
+}
+
+.sidebardiv .active,
+.sidebardiv li:hover {
+    background: #fff;
+    border-left: 7px solid #FFA800;
+}
+
+.sidebardiv .active a,
+.sidebardiv li:hover a {
+    color: #151515;
+}
+
+.sidebardiv .active svg,
+.sidebardiv li:hover svg {
+    stroke: #151515;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#content {
+    width: 100%;
+}
+
+.dashboard-card {
+    background: #151515;
+    border-radius: 9px;
+    padding: 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.single-hotel {
+    position: relative;
+    margin-bottom: 31px;
+}
+
+.single-hotel-title-div {
+    background: linear-gradient(180deg, rgba(58, 58, 58, 0) -38.52%, #000000 81.97%);
+    padding: 27px 20px 11px 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.option-div {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    display: flex;
+}
+
+.btn-trash,
+.btn-eye {
+    background: #000000;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 0 5px;
+}
+
+.vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    /* This makes sure that we can still click outside of the modal to close it */
+}
+
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width: inherit;
+    max-width: inherit;
+    /* For Bootstrap 4 - to avoid the modal window stretching full width */
+    height: inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
+
+.image-upload-div {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+    border-radius: 20px;
+    padding: 59px 24px;
+    padding-bottom: 100px;
+}
+
+.invoice-upload-div {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+    border-radius: 20px;
+    padding: 150px 24px;
+}
+
+.icon-btn-links {
+    background: #151515;
+    border-radius: 4px;
+    width: 100%;
+    height: 57px;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.soci-input {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.soci-input img {
+    border-right: 1px solid #000000;
+    padding-right: 10px;
+}
+
+.menu-div {}
+
+.btn-head {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+    border-radius: 15px;
+    padding: 15px 17px;
+    justify-content: space-between;
+}
+
+.menu-content {
+    padding: 38px;
+    display: none;
+}
+
+.menu-table {
+    border-radius: 6px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+    border-radius: 6px;
+}
+
+.menu-table thead {
+    color: white;
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.menu-table thead tr th {
+    background: #151515;
+    padding: 15px 0;
+}
+
+.menu-table thead tr th:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.menu-table thead tr th:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.menu-table tbody tr td {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 40px;
+    color: #151515;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.menu-table tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.max-w-275 {
+    width: 100%;
+    max-width: 275px;
+}
+
+.select-tick-div {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.my-breadcrumb-2 {
+    display: none;
+}
+
+#sidebarCollapse {
+    display: none;
+}
+
+@media (max-width: 1330px) {
+    .cp-5 {
+        padding: 56px 30px;
+    }
+    .title-9 {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .dashboard-card img {
+        width: 40px;
+    }
+}
+
+@media (max-width: 1140px) {
+    .cp-5 {
+        padding: 56px 20px;
+    }
+    .dashboard-card {
+        padding: 10px;
+    }
+    .title-9 {
+        font-size: 19px;
+        line-height: 30px;
+    }
+    .myinput8 {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .title-9 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .mb-67 {
+        margin-bottom: 30px !important;
+    }
+    .mb-38 {
+        margin-bottom: 20px !important;
+    }
+    .mb-56 {
+        margin-bottom: 30px !important;
+    }
+    .mb-23 {
+        margin-bottom: 0 !important;
+    }
+    .title-7 {
+        font-family: 'Proxima Nova';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 35px;
+        line-height: 30px;
+    }
+    .cp-6 {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .my-breadcrumb-1 {
+        display: none;
+    }
+    .my-breadcrumb-2 {
+        display: block;
+    }
+    #sidebarCollapse {
+        display: block;
+    }
+    #sidebar {
+        margin-left: -240px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    .cp-5 {
+        padding: 20px;
+    }
+    .div-1 {
+        margin-left: 25px;
+        margin-right: 25px;
+        width: auto;
+    }
+    .cp-1 {
+        padding: 70px 50px;
+    }
+}
+
+@media (max-width: 550px) {
+    .title-7 {
+        font-family: 'Proxima Nova';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 30px;
+    }
+    .title-9 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .div-1 {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .cp-1 {
+        padding: 40px 20px;
+    }
+    .mb-100 {
+        margin-bottom: 50px !important;
+    }
+    .mb-60 {
+        margin-bottom: 30px !important;
+    }
+    .cp-7 {
+        padding: 18px 0px !important;
+    }
+    .menu-content {
+        padding: 38px 5px;
+    }
+    .cp-5 {
+        padding: 15px;
+    }
+    .ml-18 {
+        margin-left: 10px !important;
+    }
+    .ml-24 {
+        margin-left: 10px !important;
+    }
+    .menu-table thead {
+        font-size: 20px;
+        line-height: 26px;
+    }
+    .menu-table tbody tr td {
+        font-size: 18px;
+        line-height: 40px;
+        padding: 5px;
+    }
+    .menu-table thead tr th {
+        padding: 10px 0;
+    }
+    .mb-37 {
+        margin-bottom: 16px !important;
+    }
+}
