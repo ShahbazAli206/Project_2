@@ -233,12 +233,12 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="title-8 text-color-black-shade mb-20">Tip Heading</div>
-                                <textarea name="quicktipsHeading[1]" id="quicktipsHeading[1]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
+                                <textarea name="quicktipsHeading[1111]" id="quicktipsHeading[1111]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
                             </div>
                             <div class="col-md-7 display-table">
                                 <div class="vertical-middle">
                                     <div class="title-8 text-color-black-shade mb-10">Tip Text</div>
-                                    <textarea name="quicktipsText[1]" id="quicktipsText[1]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade"></textarea>
+                                    <textarea name="quicktipsText[1111]" id="quicktipsText[1111]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -247,24 +247,28 @@
                             <div class="col-md-3">
                                 <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
 
-                                <label for="imageInputQT[1]">   shah g
+                                <label for="imageInputQT[1111]">
                                     <!-- display none wala -->
-                                    <!-- <div class="image-upload-div text-center mb-20 cp-7 ">
-                                        <img src="assets/images/image-plus.png" alt="" width="" id="uploadedImageQT[1]" name="quicktipsImage[1]" class="">
-                                    </div> -->
+                                    <div class="image-upload-div text-center mb-20 cp-7 ">
+                                        <img src="assets/images/image-plus.png" alt="" id="uploadedImageQT[1111]" name="quicktipsimage[1111]" class="">
+                                    </div>
                                 </label>
 
-                                <input type="file" name="imageInputQT[1]"  id="imageInputQT[1]" style="display: none">
+                                <input type="file" name="quicktipsimage1111"  id="imageInputQT[1111]" style="display: none">
                    
                             </div>
                             <div class="col-md-8 display-table">
                                 <div class="vertical-middle">
                                     <div class="title-8 text-color-black-shade mb-20">Tip Icon</div>
-                                    <textarea name="quicktipsicon[1]" id="" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
+                                    <textarea name="quicktipsicon[1111]" id="" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
                                 </div>
                             </div>
                         </div>
                         <!-- </div> -->
+                </div>
+
+                <div id="display-container">
+
                 </div>
                 
 
@@ -564,7 +568,41 @@
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quickTipsTemplate = document.getElementById('quick-tips-section-template');
+        const addTipButton = document.querySelector('.titlle-10');
+        const totalqtInput = document.getElementById('totalqt');
+        
+        let tipNumber = parseInt(totalqtInput.value) || 1;
+        
+        addTipButton.addEventListener('click', function () {
+            const templateContent = quickTipsTemplate.innerHTML;
+            const modifiedContent = modifyTemplate(templateContent, tipNumber);
 
+            const newDiv = document.createElement('div');
+            newDiv.innerHTML = modifiedContent;
+            newDiv.className = 'quick-tips-section'; // Add a class to identify the modified sections
+
+            document.getElementById('display-container').appendChild(newDiv);
+
+            tipNumber++;
+            totalqtInput.value = tipNumber; // Update the input field value
+            thisFunction(tipNumber);
+            console.log("function is called ");
+        });
+    });
+
+    function modifyTemplate(content, number) {
+        // Clone the template content
+        const clonedContent = content.replace(/\[1111\]/g, `[${number}]`).replace(/Tip TIP_NUMBER/g, `Tip ${number +1}`).replace(/name="imageInputQT1111"/g, `name="imageInputQT${number}"`).replace(/name="quicktipsimage1111"/g, `name="quicktipsimage${number}"`);
+
+
+        return clonedContent;
+    }
+    
+</script>
+<!-- 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const quickTipsTemplate = document.getElementById('quick-tips-section-template');
@@ -576,7 +614,6 @@
         addTipButton.addEventListener('click', function() {
             const clonedQuickTips = quickTipsTemplate.cloneNode(true);
             resetInputFields(clonedQuickTips);
-        debugger;
 
             updateTipNumber(clonedQuickTips, tipNumber);
             updateAttributes(clonedQuickTips, tipNumber);
@@ -611,8 +648,7 @@
             ];
             
             attributesToUpdate.forEach(attribute => {
-                const fieldsWithAttribute = section.querySelectorAll(`[name*="${attribute}[1]"], [id*="${attribute}[1]"],[for*="${attribute}[1]"]`);
-                debugger;
+                const fieldsWithAttribute = section.querySelectorAll(`[name*="${attribute}[1111]"], [id*="${attribute}[1111]"],[for*="${attribute}[1111]"]`);
                 fieldsWithAttribute.forEach(field => {
                     if (field.tagName === 'LABEL')
                     {
@@ -628,75 +664,12 @@
                     // Update the "for" attribute of the associated label element
                     if (field.tagName === 'INPUT' && field.type === 'file') {
                         const labelFor = field.getAttribute('id');
-                        const labelElement = document.querySelector(`label[for="imageInputQT[1]"]`);
+                        const labelElement = document.querySelector(`label[for="imageInputQT[1111]"]`);
                         console.log('hi sir *** ', labelElement );
                         if (labelElement) {
                             console.log('hi sir ***labelElement** ', labelElement );
                             console.log('hi sir ***labelFor*** ', labelFor );
 
-                            labelElement.setAttribute('for', labelFor);
-                        }
-                    }
-                });
-            });
-        }
-    });
-</script>
-
-
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const quickTipsTemplate = document.getElementById('quick-tips-section-template');
-        const addTipButton = document.querySelector('.titlle-10');
-        let tipNumber = 1; // Initialize the tip number
-        
-        addTipButton.addEventListener('click', function() {
-            const clonedQuickTips = quickTipsTemplate.cloneNode(true);
-            resetInputFields(clonedQuickTips);
-            updateTipNumber(clonedQuickTips, tipNumber);
-            updateAttributes(clonedQuickTips, tipNumber);
-            tipNumber++;
-            clonedQuickTips.style.display = 'block'; // Show the cloned Quick Tips section
-            quickTipsTemplate.parentNode.insertBefore(clonedQuickTips, addTipButton);
-            
-            const totalSectionsInput = document.getElementById('totalllSections');
-            totalSectionsInput.value = tipNumber - 1;
-        });
-        
-        function resetInputFields(section) {
-            const inputFields = section.querySelectorAll('input, textarea');
-            inputFields.forEach(field => {
-                field.value = '';
-            });
-        }
-        
-        function updateTipNumber(section, number) {
-            const tipNumberElement = section.querySelector('.title-8');
-            tipNumberElement.textContent = `Tip ${number +1}`;
-        }
-        
-        function updateAttributes(section, number) {
-            const attributesToUpdate = [
-                'quicktipsHeading',
-                'quicktipsText',
-                'uploadedImageQT',
-                'quicktipsImage',
-                'quicktipsimage',
-                'quicktipsicon',
-                'imageInputQT'
-            ];
-            
-            attributesToUpdate.forEach(attribute => {
-                const fieldsWithAttribute = section.querySelectorAll(`[name*="${attribute}[1]"], [id*="${attribute}[1]"]`);
-                fieldsWithAttribute.forEach(field => {
-                    field.id = field.id.replace(/\[\d+\]/, `[${number}]`);
-                    field.name = field.name.replace(/\[\d+\]/, `[${number}]`);
-                    
-                    // Update the "for" attribute of the associated label element
-                    if (field.tagName === 'INPUT' && field.type === 'file') {
-                        const labelFor = field.getAttribute('id');
-                        const labelElement = document.querySelector(`label[for="${labelFor}"]`);
-                        if (labelElement) {
                             labelElement.setAttribute('for', labelFor);
                         }
                     }
@@ -726,19 +699,25 @@
 </script>
 
 
-
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const totalqtInput = document.getElementById('totalqt'); // Input field for totalqt
+    let totalSets = 1; // Initial value of totalSets
 
-        const totalSets = parseInt(totalqtInput.value) || 4; // Update this with the total number of sets
+    function updateTotalSets(newTotal) {
+        totalSets = newTotal;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const totalqtInput = document.getElementById('totalqt');
+
+        totalSets = parseInt(totalqtInput.value) || 1; // Initialize totalSets
 
         for (let i = 0; i < totalSets; i++) {
             const imageInput = document.getElementById(`imageInputQT[${i}]`);
             const uploadedImage = document.getElementById(`uploadedImageQT[${i}]`);
 
             imageInput.addEventListener('change', function(event) {
+                console.log('image is clicked  ',imageInput )
+                console.log('totalSets  ',totalSets )
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
@@ -750,7 +729,46 @@
             });
         }
     });
+
+    function thisFunction(number) {
+        console.log("Hi Sir, this is:", number);
+        console.log("Hi Sir, totalSets is:", totalSets);
+        updateTotalSets(number); // Call the function to update totalSets
+    }
 </script>
+
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const totalqtInput = document.getElementById('totalqt'); // Input field for totalqt
+
+        let totalSets = parseInt(totalqtInput.value) || 1; // Update this with the total number of sets
+
+        for (let i = 0; i < totalSets; i++) {
+            const imageInput = document.getElementById(`imageInputQT[${i}]`);
+            const uploadedImage = document.getElementById(`uploadedImageQT[${i}]`);
+
+            imageInput.addEventListener('change', function(event) {
+                console.log('image is clicked  ',imageInput )
+                console.log('totalSets  ',totalSets )
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        uploadedImage.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    });
+    function thisFunction(number) {
+           console.log("Hi Sir, thisis ::: ", number);
+           const totalqtInput = document.getElementById('totalqt'); 
+           console.log("Hi Sir, totalSets ::: ", totalqtInput);
+
+        }
+</script> -->
 
 <!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
