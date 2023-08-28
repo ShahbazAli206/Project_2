@@ -805,7 +805,7 @@ class HomeController extends Controller
             "fab fa-youtube"
         ];
         $quick_tips = DB::table('quick_tips')->get(); // Change to ->get() if you want to get all rows
-        Log::info('hi im in  $quick_tips here' . json_encode($quick_tips) );
+        // Log::info('hi im in  $quick_tips here' . json_encode($quick_tips) );
         $totalqt = DB::table('quick_tips')->count();
 
         return view('welcome', compact('icons'), [
@@ -813,12 +813,6 @@ class HomeController extends Controller
             'totalqt' => $totalqt,
             ] );
     }
-
-    protected function getFontAwesomeIcons()
-{
-   
-}
-
 
     public function welcome()
 {
@@ -852,10 +846,89 @@ class HomeController extends Controller
 
 
 }
-    public function home(Request $request)
+
+
+public function home(Request $request)
 {
-    Log::info('hi im in  Section 1 here '. $request->section1image );
-    Log::info('hi im in  QT here '. $request->quicktipsimage0 );
+    // Log::info('hi im in  Section 1 here '. $request->section1image );
+    Log::info('hi im in quicktipsHeading  here '. $request->quicktipsHeading0 );
+    Log::info('hi im in quicktipsHeading1  here '. $request->quicktipsHeading1 );
+    Log::info('hi im in quicktipsHeading2  here '. $request->quicktipsHeading2 );
+    Log::info('hi im in quicktipsHeading3  here '. $request->quicktipsHeading3 );
+
+    $validatedData = $request->validate([
+
+        'quicktipsHeading.*' => 'nullable|string',
+        'quicktipsText.*' => 'nullable|string',
+        'quicktipsimage.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:22048', 
+        'iconDropdownqt.*' => 'nullable|string',
+
+    ]);
+
+    // Log for Quick Tips
+    $logQuickTips = '';
+
+    for ($i = 0; $i < count($validatedData['quicktipsHeading'])-1; $i++) {
+        $logQuickTips .= "Quick Tip $i:\n";
+        $logQuickTips .= ' quicktipsHeading: ' . ($validatedData['quicktipsHeading'][$i] ?? 'Not provided') .
+                        ' quicktipsText: ' . ($validatedData['quicktipsText'][$i] ?? 'Not provided') .
+                        ' quicktipsIcon: ' . ($validatedData['iconDropdownqt'][$i] ?? 'Not provided') .
+                    "\n\n quicktipsimage is : " . ($validatedData['quicktipsimage'][$i] ?? 'Not provided') . "\n\n";
+    }
+
+    Log::info("\nhi Quick Tips details:\n" . $logQuickTips);
+   
+
+    Log::info("\n\n\nhi validatedData is here  ::::: " . json_encode($validatedData));
+
+// //Storing Quick Tips image
+//     if ($request->hasFile('quicktipsimage0')) {
+//         $image = $request->file('quicktipsimage0');
+
+//         Log::info('hi im storing QT image in public ');
+//         $imagePathquicktipsimage = $image->store('images', 'public'); // Store the image in the storage folder
+//         // You can store the $imagePath in your database or process it further
+//     }
+    
+
+
+//      //QICK TIPS DATA Storing to DATABASE     
+//      $quick_tipsUpdate = [];
+ 
+//      if (isset($validatedData['quicktipsHeading0'])) {
+//          $quick_tipsUpdate['title'] = $validatedData['quicktipsHeading0'];
+//      }
+ 
+//      if (isset($validatedData['quicktipsText0'])) {
+//          $quick_tipsUpdate['text'] = $validatedData['quicktipsText0'];
+//      }
+ 
+//      if (isset($imagePathquicktipsimage)) {
+//          $quick_tipsUpdate['image'] = $imagePathquicktipsimage;
+ 
+//      }
+//      if (isset($validatedData['iconDropdownqt0'])) {
+//         $quick_tipsUpdate['icon'] = $validatedData['iconDropdownqt0'];
+//     }
+ 
+//     if (!empty($quick_tipsUpdate)) {
+    
+//          DB::table('quick_tips')->insert($quick_tipsUpdate);
+//     }
+
+    // Process other form data
+
+    return redirect()->back()->with('success', 'Form submitted successfully.');
+
+
+
+}
+
+
+    public function home2(Request $request)
+{
+    // Log::info('hi im in  Section 1 here '. $request->section1image );
+    // Log::info('hi im in quicktipsHeading  here '. $request->quicktipsHeading0 );
 
     $validatedData = $request->validate([
         //validating Section 1 data
@@ -863,8 +936,13 @@ class HomeController extends Controller
         'section1text' => 'nullable|string',
         'section1image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:22048', 
 
-        // //validating Quick Tips data
-        'quicktipsHeading0' => 'nullable|string',
+        //validating Quick Tips data
+    // 'quicktipsHeading.*' => 'nullable|string',
+    // 'quicktipsText.*' => 'nullable|string',
+    // 'quicktipsimage.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:22048', 
+    // 'iconDropdownqt.*' => 'nullable|string',
+
+        'quicktipsHeading0' => 'nullable|string', 
         'quicktipsText0' => 'nullable|string',
         'quicktipsimage0' => 'nullable|image|mimes:jpeg,PNG,png,jpg,gif|max:22048', 
         'iconDropdownqt0' => 'nullable|string',
@@ -912,6 +990,17 @@ class HomeController extends Controller
 
     
     // Log for Quick Tips
+//     $logQuickTips = '';
+
+// for ($i = 0; $i < count($validatedData['quicktipsHeading']); $i++) {
+//     $logQuickTips .= "Quick Tip $i:\n";
+//     $logQuickTips .= ' quicktipsHeading: ' . ($validatedData['quicktipsHeading'][$i] ?? 'Not provided') .
+//                     ' quicktipsText: ' . ($validatedData['quicktipsText'][$i] ?? 'Not provided') .
+//                     ' quicktipsIcon: ' . ($validatedData['iconDropdownqt'][$i] ?? 'Not provided') .
+//                     "\n\n quicktipsimage is : " . ($validatedData['quicktipsimage'][$i] ?? 'Not provided') . "\n\n";
+// }
+
+// Log::info("\nhi Quick Tips details:\n" . $logQuickTips);
 $logQuickTips = ' quicktipsHeading: ' . ($validatedData['quicktipsHeading0'] ?? 'Not provided') . 
 ' quicktipsText: ' . ($validatedData['quicktipsText0'] ?? 'Not provided') . 
 ' quicktipsIcon: ' . ($validatedData['iconDropdownqt0'] ?? 'Not provided') .
@@ -1004,6 +1093,49 @@ Log::info('hi Section 4 is completed here' . $logSection4);
         $imagePathquicktipsimage = $image->store('images', 'public'); // Store the image in the storage folder
         // You can store the $imagePath in your database or process it further
     }
+
+
+    // Initialize an array to store all quick tips' data
+// $allQuickTips = [];
+
+// // Iterate through the quick tips
+// for ($i = 0; $i < count($validatedData['quicktipsHeading']); $i++) {
+//     $quickTipData = [];
+
+//     // Storing Quick Tips image to public
+//     if ($request->hasFile("quicktipsimage{$i}")) {
+//         $image = $request->file("quicktipsimage{$i}");
+//         $imagePath = $image->store('images', 'public');
+//         $quickTipData['image'] = $imagePath;
+//         Log::info("\n\n\nhi image for Quick Tips is stored in storage  ::::: " . $i);
+
+//     }
+
+//     // Adding other quick tip data
+//     if (isset($validatedData['quicktipsHeading'][$i])) {
+//         $quickTipData['title'] = $validatedData['quicktipsHeading'][$i];
+//     }
+
+//     if (isset($validatedData['quicktipsText'][$i])) {
+//         $quickTipData['text'] = $validatedData['quicktipsText'][$i];
+//     }
+
+//     if (isset($validatedData['iconDropdownqt'][$i])) {
+//         $quickTipData['icon'] = $validatedData['iconDropdownqt'][$i];
+//     }
+
+//     if (!empty($quickTipData)) {
+//         $allQuickTips[] = $quickTipData;
+//     }
+// }
+
+// // Insert all quick tips into the database in a single query
+// if (!empty($allQuickTips)) {
+//     DB::table('quick_tips')->insert($allQuickTips);
+//     Log::info("\n\n\nhi data for Quick Tips is stored in DB  ::::: " . $i);
+
+// }
+
     
     
     
@@ -1063,9 +1195,7 @@ if ($request->hasFile('section2image')) {
     }}
 
 
-     //QICK TIPS DATA Storing to DATABASE
-     $existingDataQICK = DB::table('quick_tips')->where('id', 1)->first();
-     
+     //QICK TIPS DATA Storing to DATABASE     
      $quick_tipsUpdate = [];
  
      if (isset($validatedData['quicktipsHeading0'])) {
@@ -1085,11 +1215,8 @@ if ($request->hasFile('section2image')) {
     }
  
     if (!empty($quick_tipsUpdate)) {
-    //  if ($existingDataQICK) {
-    //      DB::table('quick_tips')->where('id', 1)->update($quick_tipsUpdate);
-    //  } else {
+    
          DB::table('quick_tips')->insert($quick_tipsUpdate);
-    //  }
     }
 
 

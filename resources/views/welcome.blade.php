@@ -173,16 +173,15 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="title-8 text-color-black-shade mb-20">Tip Heading</div>
-                            <textarea name="quicktipsHeading{{ $index }}" id="quicktipsHeading[{{ $index }}]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
+                            <textarea name="quicktipsHeading[{{ $index }}]" id="quicktipsHeading[{{ $index }}]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
                         </div>
                         <div class="col-md-7 display-table">
                             <div class="vertical-middle">
                                 <div class="title-8 text-color-black-shade mb-10">Tip Text</div>
-                                <textarea name="quicktipsText{{ $index }}" id="quicktipsText[{{ $index }}]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade"></textarea>
+                                <textarea name="quicktipsText[{{ $index }}]" id="quicktipsText[{{ $index }}]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade"></textarea>
                             </div>
                         </div>
                     </div>
-                
                     <div class="row">
                         <div class="col-md-4">
                             <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
@@ -192,9 +191,8 @@
                                     <img src="assets/images/image-plus.png" alt=""  style="height:200px" id="uploadedImageQT[{{ $index }}]" name="quicktipsImage[{{ $index }}]" class="">
                                 </div>
                             </label>
-                            <input type="file" name="quicktipsimage{{ $index }}"  id="imageInputQT[{{ $index }}]" style="display: none">
+                            <input type="file" name="quicktipsimage[{{ $index }}]"  id="imageInputQT[{{ $index }}]" style="display: none">
                         </div>
-
                         <div class="col-md-8 display-table">
                             <div class="vertical-middle">
                                 <div class="title-8 text-color-black-shade mb-20">Tip Icon</div>
@@ -204,14 +202,12 @@
                                         <option value="{{ $icon }}">{{ $icon }}</option>
                                     @endforeach
                                 </select>
-
-                                <input type="hidden" name="selectedIconNameqt{{ $index }}" id="selectedIconNameqt{{ $index }}" value="">
+                                <input type="hidden" name="selectedIconNameqt[{{ $index }}]" id="selectedIconNameqt{{ $index }}" value="">
                                 <div class="col-md-3" >
                                     <div class="image-upload-div text-center mb-15 selected-iconqt mt-3" >
                                         <i id="selectedIcon{{ $index }}" style=" font-size: 124px;" class=""></i>
                                     </div>
                                 </div>
-
                                 <script>
                                     $(document).ready(function () {
                                         $('#iconDropdownqt{{ $index }}').change(function () {
@@ -225,11 +221,9 @@
                         </div>
                     </div>
                 @endforeach
-
                 <div id="quick-tips-section-template" style="display: none;">
                     <!-- <div class="cp-5"> -->
                         <div class="title-8 text-color-black-shade mb-20">Tip TIP_NUMBER</div>
-                        
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="title-8 text-color-black-shade mb-20">Tip Heading</div>
@@ -242,25 +236,65 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
-
                                 <label for="imageInputQT[1111]">
-                                    <!-- display none wala -->
+                                    <div class="image-upload-div text-center mb-20 cp-7">
+                                        <img src="assets/images/image-plus.png" alt="" id="uploadedImageQT[1111]" name="quicktipsimage[1111]"  style="height:200px">
+                                    </div>
+                                </label>
+                                <input type="file" name="quicktipsimage1111" id="imageInputQT[1111]" style="display: none">
+    
+                                <!-- <label for="imageInputQT[1111]">
                                     <div class="image-upload-div text-center mb-20 cp-7 ">
                                         <img src="assets/images/image-plus.png" alt="" id="uploadedImageQT[1111]" name="quicktipsimage[1111]" class="">
                                     </div>
                                 </label>
 
                                 <input type="file" name="quicktipsimage1111"  id="imageInputQT[1111]" style="display: none">
-                   
+                                -->
                             </div>
                             <div class="col-md-8 display-table">
                                 <div class="vertical-middle">
                                     <div class="title-8 text-color-black-shade mb-20">Tip Icon</div>
-                                    <textarea name="quicktipsicon[1111]" id="" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
+                                <select id="iconDropdownqt1111" name="iconDropdownqt1111">
+                                    <option value="">Select an icon</option>
+                                    @foreach ($icons as $icon)
+                                        <option value="{{ $icon }}">{{ $icon }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="hidden" name="selectedIconNameqt1111" id="selectedIconNameqt1111" value="">
+                                <div class="col-md-3" >
+                                    <div class="image-upload-div text-center mb-15 selected-iconqt mt-3" >
+                                        <i id="selectedIcon1111" style=" font-size: 124px;" class=""></i>
+                                    </div>
+                                </div>
+                                <script>
+                                    // $(document).ready(function () {
+                                    //     $('#iconDropdownqt1111').change(function () {
+                                    //         var selectedIcon = $(this).val();
+                                    //         $('#selectedIcon1111').removeClass().addClass(selectedIcon);
+                                    //         $('#selectedIconNameqt1111').val(selectedIcon);
+                                    //     });
+                                    // });
+                                    
+                                    function iconselectttt() {
+                                            console.log("Document is ready."); // Add this line
+                                            $('[id^="iconDropdownqt"]').change(function () {
+                                            console.log('icon is selectinggggggggg');
+                                            const number = $(this).attr('id').replace('iconDropdownqt', ''); // Get the number from ID
+                                            const selectedIcon = $(this).val();
+                                            $(`#selectedIcon${number}`).removeClass().addClass(selectedIcon);
+                                            $(`#selectedIconNameqt${number}`).val(selectedIcon); // Update this input's value
+                                         });
+
+                                        }
+
+   
+                                
+                                </script>
+                                    <!-- <textarea name="quicktipsicon[1111]" id="" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea> -->
                                 </div>
                             </div>
                         </div>
@@ -275,6 +309,9 @@
 
                 <div class="titlle-10 text-color-yellow mr-5 mb-30"><u><h2>+Add a new Tip</h2></u></div>
             </div>
+            <button type="submit" class="btn btn-primary ml-15 mt-3 mb-2 px-4 py-2 fs-8 rounded-pill shadow-sm" style="font-size: 38px;">
+    Submit
+</button>
 
 
 
@@ -583,6 +620,9 @@
             const newDiv = document.createElement('div');
             newDiv.innerHTML = modifiedContent;
             newDiv.className = 'quick-tips-section'; // Add a class to identify the modified sections
+            const imageInput = newDiv.querySelector(`input[name="quicktipsimage${tipNumber}"]`);
+            const uploadedImage = newDiv.querySelector(`img[name="quicktipsimage[${tipNumber}]"]`);
+            handleImageSelection(imageInput, uploadedImage);
 
             document.getElementById('display-container').appendChild(newDiv);
 
@@ -590,95 +630,39 @@
             totalqtInput.value = tipNumber; // Update the input field value
             thisFunction(tipNumber);
             console.log("function is called ");
+            iconselectttt();
         });
     });
 
     function modifyTemplate(content, number) {
-        // Clone the template content
-        const clonedContent = content.replace(/\[1111\]/g, `[${number}]`).replace(/Tip TIP_NUMBER/g, `Tip ${number +1}`).replace(/name="imageInputQT1111"/g, `name="imageInputQT${number}"`).replace(/name="quicktipsimage1111"/g, `name="quicktipsimage${number}"`);
+        const clonedContent = content
+    .replace(/\[1111\]/g, `[${number}]`)
+    .replace(/Tip TIP_NUMBER/g, `Tip ${number + 1}`)
+    .replace(/name="imageInputQT1111"/g, `name="imageInputQT${number}"`)
+    .replace(/name="quicktipsimage1111"/g, `name="quicktipsimage${number}"`)
+    .replace(/id="iconDropdownqt1111"/g, `id="iconDropdownqt${number}"`)
+    .replace(/id="selectedIconNameqt1111"/g, `id="selectedIconNameqt${number}"`)
+    .replace(/name="selectedIconNameqt1111"/g, `name="selectedIconNameqt${number}"`)
+    .replace(/id="selectedIcon1111"/g, `id="selectedIcon${number}"`);
+
 
 
         return clonedContent;
     }
-    
-</script>
-<!-- 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const quickTipsTemplate = document.getElementById('quick-tips-section-template');
-        const addTipButton = document.querySelector('.titlle-10');
-        const totalqtInput = document.getElementById('totalqt'); // Input field for totalqt
-        
-        let tipNumber = parseInt(totalqtInput.value) || 1; // Initialize tipNumber from totalqt or default to 1
-        
-        addTipButton.addEventListener('click', function() {
-            const clonedQuickTips = quickTipsTemplate.cloneNode(true);
-            resetInputFields(clonedQuickTips);
-
-            updateTipNumber(clonedQuickTips, tipNumber);
-            updateAttributes(clonedQuickTips, tipNumber);
-            tipNumber++;
-            totalqtInput.value = tipNumber; // Update the input field value
-            clonedQuickTips.style.display = 'block'; // Show the cloned Quick Tips section
-            quickTipsTemplate.parentNode.insertBefore(clonedQuickTips, addTipButton);
-            
-        });
-        
-        function resetInputFields(section) {
-            const inputFields = section.querySelectorAll('input, textarea');
-            inputFields.forEach(field => {
-                field.value = '';
-            });
-        }
-        
-        function updateTipNumber(section, number) {
-            const tipNumberElement = section.querySelector('.title-8');
-            tipNumberElement.textContent = `Tip ${number + 1}`;
-        }
-        
-        function updateAttributes(section, number) {
-            const attributesToUpdate = [
-                'quicktipsHeading',
-                'quicktipsText',
-                'uploadedImageQT',
-                'quicktipsImage',
-                'quicktipsimage',
-                'quicktipsicon',
-                'imageInputQT'
-            ];
-            
-            attributesToUpdate.forEach(attribute => {
-                const fieldsWithAttribute = section.querySelectorAll(`[name*="${attribute}[1111]"], [id*="${attribute}[1111]"],[for*="${attribute}[1111]"]`);
-                fieldsWithAttribute.forEach(field => {
-                    if (field.tagName === 'LABEL')
-                    {
-                        field.htmlFor = field.htmlFor.replace(/\[\d+\]/, `[${number}]`);
-                    }
-                    else
-                    {
-                        field.id = field.id.replace(/\[\d+\]/, `[${number}]`);
-                        field.name = field.name.replace(/\[\d+\]/, `[${number}]`);
-                        console.log('id is : ',field.id, ' name is : ',field.name   )
-                    }
-                    
-                    // Update the "for" attribute of the associated label element
-                    if (field.tagName === 'INPUT' && field.type === 'file') {
-                        const labelFor = field.getAttribute('id');
-                        const labelElement = document.querySelector(`label[for="imageInputQT[1111]"]`);
-                        console.log('hi sir *** ', labelElement );
-                        if (labelElement) {
-                            console.log('hi sir ***labelElement** ', labelElement );
-                            console.log('hi sir ***labelFor*** ', labelFor );
-
-                            labelElement.setAttribute('for', labelFor);
-                        }
-                    }
-                });
-            });
+    function handleImageSelection(imageInput, uploadedImage) {
+    imageInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
         }
     });
-</script> -->
-
+    }
+    
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -698,47 +682,7 @@
     });
 </script>
 
-
 <script>
-    let totalSets = 1; // Initial value of totalSets
-
-    function updateTotalSets(newTotal) {
-        totalSets = newTotal;
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const totalqtInput = document.getElementById('totalqt');
-
-        totalSets = parseInt(totalqtInput.value) || 1; // Initialize totalSets
-
-        for (let i = 0; i < totalSets; i++) {
-            const imageInput = document.getElementById(`imageInputQT[${i}]`);
-            const uploadedImage = document.getElementById(`uploadedImageQT[${i}]`);
-
-            imageInput.addEventListener('change', function(event) {
-                console.log('image is clicked  ',imageInput )
-                console.log('totalSets  ',totalSets )
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        uploadedImage.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-    });
-
-    function thisFunction(number) {
-        console.log("Hi Sir, this is:", number);
-        console.log("Hi Sir, totalSets is:", totalSets);
-        updateTotalSets(number); // Call the function to update totalSets
-    }
-</script>
-
-
-<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const totalqtInput = document.getElementById('totalqt'); // Input field for totalqt
 
@@ -749,8 +693,6 @@
             const uploadedImage = document.getElementById(`uploadedImageQT[${i}]`);
 
             imageInput.addEventListener('change', function(event) {
-                console.log('image is clicked  ',imageInput )
-                console.log('totalSets  ',totalSets )
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
@@ -768,30 +710,7 @@
            console.log("Hi Sir, totalSets ::: ", totalqtInput);
 
         }
-</script> -->
-
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var i = 0;
-        const imageInput = document.getElementById(`imageInputQT[${i}]`);
-        // const imageInput = document.getElementById('quicktipsimage0');
-        const uploadedImage = document.getElementById(`uploadedImageQT[${i}]`);
-        
-        imageInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                console.log("hiiiiiiii")
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedImage.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    });
-</script> -->
-
-
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -904,15 +823,6 @@
     });
 </script>
 
-<!-- <script>
-    const iconDropdown = document.getElementById('iconDropdown');
-    const selectedIconContainer = document.querySelector('.selected-icon');
-    
-    iconDropdown.addEventListener('change', function() {
-        const selectedIcon = this.value;
-        selectedIconContainer.innerHTML = `<i class="${selectedIcon} fa-4x" style="color: black;"></i>`;
-    });
-</script> -->
 <script>
     const iconDropdown = document.getElementById('iconDropdownnn');
     const iconSearch = document.getElementById('iconSearchhh');
