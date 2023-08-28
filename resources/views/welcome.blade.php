@@ -169,6 +169,8 @@
 
                 @foreach ($quick_tips as $index => $quickTip)
                     <div class="title-8 text-color-black-shade mb-20">Tip {{ $index + 1 }}</div>
+                    <input type="number" name="quicktipsID[{{ $index }}]" value="{{ $index }}" style="display: none">
+
                 
                     <div class="row">
                         <div class="col-md-4">
@@ -186,7 +188,6 @@
                         <div class="col-md-4">
                             <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
                             <label for="imageInputQT[{{ $index }}]">      
-                                <!-- foreachloop              -->
                                 <div class="image-upload-div text-center mb-20 cp-7 ">
                                     <img src="assets/images/image-plus.png" alt=""  style="height:200px" id="uploadedImageQT[{{ $index }}]" name="quicktipsImage[{{ $index }}]" class="">
                                 </div>
@@ -222,7 +223,6 @@
                     </div>
                 @endforeach
                 <div id="quick-tips-section-template" style="display: none;">
-                    <!-- <div class="cp-5"> -->
                         <div class="title-8 text-color-black-shade mb-20">Tip TIP_NUMBER</div>
                         <div class="row">
                             <div class="col-md-4">
@@ -244,16 +244,7 @@
                                         <img src="assets/images/image-plus.png" alt="" id="uploadedImageQT[1111]" name="quicktipsimage[1111]"  style="height:200px">
                                     </div>
                                 </label>
-                                <input type="file" name="quicktipsimage1111" id="imageInputQT[1111]" style="display: none">
-    
-                                <!-- <label for="imageInputQT[1111]">
-                                    <div class="image-upload-div text-center mb-20 cp-7 ">
-                                        <img src="assets/images/image-plus.png" alt="" id="uploadedImageQT[1111]" name="quicktipsimage[1111]" class="">
-                                    </div>
-                                </label>
-
-                                <input type="file" name="quicktipsimage1111"  id="imageInputQT[1111]" style="display: none">
-                                -->
+                                <input type="file" name="quicktipsimage[1111]" id="imageInputQT[1111]" style="display: none">
                             </div>
                             <div class="col-md-8 display-table">
                                 <div class="vertical-middle">
@@ -264,21 +255,13 @@
                                         <option value="{{ $icon }}">{{ $icon }}</option>
                                     @endforeach
                                 </select>
-                                <input type="hidden" name="selectedIconNameqt1111" id="selectedIconNameqt1111" value="">
+                                <input type="hidden" name="selectedIconNameqt[1111]" id="selectedIconNameqt1111" value="">
                                 <div class="col-md-3" >
                                     <div class="image-upload-div text-center mb-15 selected-iconqt mt-3" >
                                         <i id="selectedIcon1111" style=" font-size: 124px;" class=""></i>
                                     </div>
                                 </div>
                                 <script>
-                                    // $(document).ready(function () {
-                                    //     $('#iconDropdownqt1111').change(function () {
-                                    //         var selectedIcon = $(this).val();
-                                    //         $('#selectedIcon1111').removeClass().addClass(selectedIcon);
-                                    //         $('#selectedIconNameqt1111').val(selectedIcon);
-                                    //     });
-                                    // });
-                                    
                                     function iconselectttt() {
                                             console.log("Document is ready."); // Add this line
                                             $('[id^="iconDropdownqt"]').change(function () {
@@ -294,11 +277,9 @@
    
                                 
                                 </script>
-                                    <!-- <textarea name="quicktipsicon[1111]" id="" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea> -->
                                 </div>
                             </div>
                         </div>
-                        <!-- </div> -->
                 </div>
 
                 <div id="display-container">
@@ -620,7 +601,7 @@
             const newDiv = document.createElement('div');
             newDiv.innerHTML = modifiedContent;
             newDiv.className = 'quick-tips-section'; // Add a class to identify the modified sections
-            const imageInput = newDiv.querySelector(`input[name="quicktipsimage${tipNumber}"]`);
+            const imageInput = newDiv.querySelector(`input[name="quicktipsimage[${tipNumber}]"]`);
             const uploadedImage = newDiv.querySelector(`img[name="quicktipsimage[${tipNumber}]"]`);
             handleImageSelection(imageInput, uploadedImage);
 
@@ -639,15 +620,12 @@
     .replace(/\[1111\]/g, `[${number}]`)
     .replace(/Tip TIP_NUMBER/g, `Tip ${number + 1}`)
     .replace(/name="imageInputQT1111"/g, `name="imageInputQT${number}"`)
-    .replace(/name="quicktipsimage1111"/g, `name="quicktipsimage${number}"`)
+    // .replace(/name="quicktipsimage1111"/g, `name="quicktipsimage${number}"`)
     .replace(/id="iconDropdownqt1111"/g, `id="iconDropdownqt${number}"`)
     .replace(/id="selectedIconNameqt1111"/g, `id="selectedIconNameqt${number}"`)
     .replace(/name="selectedIconNameqt1111"/g, `name="selectedIconNameqt${number}"`)
     .replace(/id="selectedIcon1111"/g, `id="selectedIcon${number}"`);
-
-
-
-        return clonedContent;
+        return clonedContent;  
     }
     function handleImageSelection(imageInput, uploadedImage) {
     imageInput.addEventListener('change', function(event) {

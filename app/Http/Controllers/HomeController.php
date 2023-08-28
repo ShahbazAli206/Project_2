@@ -850,18 +850,13 @@ class HomeController extends Controller
 
 public function home(Request $request)
 {
-    // Log::info('hi im in  Section 1 here '. $request->section1image );
-    Log::info('hi im in quicktipsHeading  here '. $request->quicktipsHeading0 );
-    Log::info('hi im in quicktipsHeading1  here '. $request->quicktipsHeading1 );
-    Log::info('hi im in quicktipsHeading2  here '. $request->quicktipsHeading2 );
-    Log::info('hi im in quicktipsHeading3  here '. $request->quicktipsHeading3 );
-
     $validatedData = $request->validate([
 
         'quicktipsHeading.*' => 'nullable|string',
+        'quicktipsID.*' => 'nullable|string',
         'quicktipsText.*' => 'nullable|string',
         'quicktipsimage.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:22048', 
-        'iconDropdownqt.*' => 'nullable|string',
+        'selectedIconNameqt.*' => 'nullable|string',
 
     ]);
 
@@ -872,7 +867,7 @@ public function home(Request $request)
         $logQuickTips .= "Quick Tip $i:\n";
         $logQuickTips .= ' quicktipsHeading: ' . ($validatedData['quicktipsHeading'][$i] ?? 'Not provided') .
                         ' quicktipsText: ' . ($validatedData['quicktipsText'][$i] ?? 'Not provided') .
-                        ' quicktipsIcon: ' . ($validatedData['iconDropdownqt'][$i] ?? 'Not provided') .
+                        ' quicktipsIcon: ' . ($validatedData['selectedIconNameqt'][$i] ?? 'Not provided') .
                     "\n\n quicktipsimage is : " . ($validatedData['quicktipsimage'][$i] ?? 'Not provided') . "\n\n";
     }
 
