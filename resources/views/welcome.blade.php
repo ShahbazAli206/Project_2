@@ -169,18 +169,18 @@
 
                 @foreach ($quick_tips as $index => $quickTip)
                     <div class="title-8 text-color-black-shade mb-20">Tip {{ $index + 1 }}</div>
-                    <input type="number" name="quicktipsID[{{ $index }}]" value="{{ $index }}" style="display: none">
+                    <input type="number" name="quicktipsID[{{ $index }}]" value="{{  $quickTip->id  }}" style="display: none">
 
                 
                     <div class="row">
                         <div class="col-md-4">
                             <div class="title-8 text-color-black-shade mb-20">Tip Heading</div>
-                            <textarea name="quicktipsHeading[{{ $index }}]" id="quicktipsHeading[{{ $index }}]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
+                            <textarea name="quicktipsHeading[{{ $index }}]" id="quicktipsHeading[{{ $index }}]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade">{{ $quickTip->title }}</textarea>
                         </div>
                         <div class="col-md-7 display-table">
                             <div class="vertical-middle">
                                 <div class="title-8 text-color-black-shade mb-10">Tip Text</div>
-                                <textarea name="quicktipsText[{{ $index }}]" id="quicktipsText[{{ $index }}]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade"></textarea>
+                                <textarea name="quicktipsText[{{ $index }}]" id="quicktipsText[{{ $index }}]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade">{{ $quickTip->text }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -189,10 +189,10 @@
                             <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
                             <label for="imageInputQT[{{ $index }}]">      
                                 <div class="image-upload-div text-center mb-20 cp-7 ">
-                                    <img src="assets/images/image-plus.png" alt=""  style="height:200px" id="uploadedImageQT[{{ $index }}]" name="quicktipsImage[{{ $index }}]" class="">
+                                    <img src="{{$quickTip->image ?? 'assets/images/image-plus.png'}}" alt="" onerror="this.src='assets/images/image-plus.png';" style="height:200px" id="uploadedImageQT[{{ $index }}]" name="quicktipsImage[{{ $index }}]" class="">
                                 </div>
                             </label>
-                            <input type="file" name="quicktipsimage[{{ $index }}]"  id="imageInputQT[{{ $index }}]" style="display: none">
+                            <input type="file" name="inputquicktipsimage[{{ $index }}]"  id="imageInputQT[{{ $index }}]" style="display: none">
                         </div>
                         <div class="col-md-8 display-table">
                             <div class="vertical-middle">
@@ -200,13 +200,15 @@
                                 <select id="iconDropdownqt{{ $index }}" name="iconDropdownqt{{ $index }}">
                                     <option value="">Select an icon</option>
                                     @foreach ($icons as $icon)
-                                        <option value="{{ $icon }}">{{ $icon }}</option>
+                                    <option value="{{ $icon }}" @if ($icon == $quickTip->icon) selected @endif>{{ $icon }}</option>
+
+                                        <!-- <option value="{{ $icon }}">{{ $icon }}</option> -->
                                     @endforeach
                                 </select>
                                 <input type="hidden" name="selectedIconNameqt[{{ $index }}]" id="selectedIconNameqt{{ $index }}" value="">
                                 <div class="col-md-3" >
                                     <div class="image-upload-div text-center mb-15 selected-iconqt mt-3" >
-                                        <i id="selectedIcon{{ $index }}" style=" font-size: 124px;" class=""></i>
+                                        <i id="selectedIcon{{ $index }}" style=" font-size: 124px;" class="{{ $quickTip->icon }}"></i>
                                     </div>
                                 </div>
                                 <script>
@@ -244,7 +246,7 @@
                                         <img src="assets/images/image-plus.png" alt="" id="uploadedImageQT[1111]" name="quicktipsimage[1111]"  style="height:200px">
                                     </div>
                                 </label>
-                                <input type="file" name="quicktipsimage[1111]" id="imageInputQT[1111]" style="display: none">
+                                <input type="file" name="inputquicktipsimage[1111]" id="imageInputQT[1111]" style="display: none">
                             </div>
                             <div class="col-md-8 display-table">
                                 <div class="vertical-middle">
@@ -601,7 +603,7 @@
             const newDiv = document.createElement('div');
             newDiv.innerHTML = modifiedContent;
             newDiv.className = 'quick-tips-section'; // Add a class to identify the modified sections
-            const imageInput = newDiv.querySelector(`input[name="quicktipsimage[${tipNumber}]"]`);
+            const imageInput = newDiv.querySelector(`input[name="inputquicktipsimage[${tipNumber}]"]`);
             const uploadedImage = newDiv.querySelector(`img[name="quicktipsimage[${tipNumber}]"]`);
             handleImageSelection(imageInput, uploadedImage);
 
