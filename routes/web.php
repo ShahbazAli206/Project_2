@@ -19,3 +19,8 @@ Route::get('/', [HomeController::class, 'welcomee']);
 Route::get('/about', [HomeController::class, 'welcome'])->name('about');
 
 Route::post('/submit', [HomeController::class, 'home'])->name('submit.form');
+
+Route::delete('/quicktips/delete/{id}',[HomeController::class, 'delete'])->name('quicktips.delete');
+// Route::delete('/quicktips/delete/{id}', 'QuickTipsController@delete')->name('quicktips.delete');
+Route::get('/items/{id}', [HomeController::class, 'delete'])->name('item.show');
+

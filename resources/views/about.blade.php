@@ -128,31 +128,43 @@
     </div>
     <div class="clearfix"></div>
     <div class="home-header" style="background: url('{{ asset('storage/' . $section1Data->backgroundImage) }}');  background-size: cover; background-repeat: no-repeat; background-position: center;">
-        <div class="title-1 text-center text-color-white mb-10">{{$section1Data->heading}}</div>
-        <div class="title-2 text-center text-color-white">{{$section1Data->bodyText}}</div>
+        <div class="title-1 text-center text-color-black mb-10">{{$section1Data->heading}}</div>
+        <div class="title-2 text-center text-color-black">{{$section1Data->bodyText}}</div>
     </div>
     <div class="bg-black-shade p-2">
         <div class="title-1 text-center text-color-white mb-10">QUICK TIPS</div>
         
-        <div class="icons">
-            @foreach ($quick_tips as $index => $quick_tip)
-                <span class="icon" id="icon{{ $index + 1 }}"><i class="{{$quick_tip->icon}}" style="color: white;"></i></span>
-            @endforeach
+            <!-- <div class="icons">
+                @foreach ($quick_tips as $index => $quick_tip)
+                    <span class="icon" id="icon{{ $index + 1 }}"><i class="{{$quick_tip->icon}}" style="color: white;"></i></span>
+                @endforeach
+            </div> -->
+            <div class="row">
+    @foreach ($quick_tips as $index => $quick_tip)
+        <div class="col-3 mb-3">
+            <span class="icon d-block text-center" id="icon{{ $index + 1 }}">
+                <i class="{{$quick_tip->icon}}" style="color: white; font-size: 24px;"></i>
+            </span>
         </div>
+        @if (($index + 1) % 4 == 0)
+            </div><div class="row justify-content-center">
+        @endif
+    @endforeach
+</div>
 
         
-        @foreach ($quick_tips as $index => $quick_tip)
-        <div class="modal" id="modal{{ $index + 1 }}">
-            <div class="modal-content">
-                <span class="close" id="close">&times;</span>
-                <img src="{{ asset('storage/' . $quick_tip->image) }}" class="modal-image" alt="Image">
-                <h2>{{ $quick_tip->title }}</h2>
-                <div class="modal-paragraph">
-                    <p>{{ $quick_tip->text }}</p>
+            @foreach ($quick_tips as $index => $quick_tip)
+                <div class="modal" id="modal{{ $index + 1 }}">
+                    <div class="modal-content">
+                        <span class="close" id="close">&times;</span>
+                        <img src="{{ asset('storage/' . $quick_tip->image) }}" class="modal-image" alt="Image">
+                        <h2>{{ $quick_tip->title }}</h2>
+                        <div class="modal-paragraph">
+                            <p>{{ $quick_tip->text }}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        @endforeach
+            @endforeach
         </div>
 
     <script>

@@ -250,12 +250,11 @@
                                 <textarea name="quicktipsText[{{ $index }}]" id="quicktipsText[{{ $index }}]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade">{{ $quickTip->text }}</textarea>
                             </div>
                         </div>
-                        <div class="col-md-1 text-center align-self-center">
-        <!-- Delete Icon -->
-        <button class="btn btn-danger delete-tip"  >
-            <i class="fa fa-trash"></i>
-        </button>
-    </div>
+                        <a href="{{ route('item.show', ['id' => $quickTip->id]) }}"  class="text-danger">
+                        <i class="fa fa-trash ml-5" style="font-size: 34px;"></i>
+                        </a>
+
+                        
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -685,7 +684,7 @@
     // .replace(/name="quicktipsimage1111"/g, `name="quicktipsimage${number}"`)
     .replace(/id="iconDropdownqt1111"/g, `id="iconDropdownqt${number}"`)
     .replace(/id="selectedIconNameqt1111"/g, `id="selectedIconNameqt${number}"`)
-    .replace(/name="DummyselectedIconNameqt2222"/g, `name="selectedIconNameqt${number}"`)
+    .replace(/name="DummyselectedIconNameqt2222"/g, `name="selectedIconNameqt[${number}]"`)
     .replace(/name="DummyquicktipsHeading2222"/g, `name="quicktipsHeading[${number}]"`)
     .replace(/name="DummyquicktipsText2222"/g, `name="quicktipsText[${number}]"`)
     .replace(/id="selectedIcon1111"/g, `id="selectedIcon${number}"`);
