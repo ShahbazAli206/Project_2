@@ -807,6 +807,7 @@ class HomeController extends Controller
         $quick_tips = DB::table('quick_tips')->get(); // Change to ->get() if you want to get all rows
         // Log::info('hi im in  $quick_tips here' . json_encode($quick_tips) );
         $totalqt = DB::table('quick_tips')->count();
+        Log::info("\n\n *** Quick  ***" . json_encode($quick_tips));
 
         return view('welcome', compact('icons'), [
             'quick_tips' => $quick_tips,
@@ -819,7 +820,7 @@ class HomeController extends Controller
     $section1Data = DB::table('section_1')->first(); // Change to ->get() if you want to get all rows
 
     $quick_tips = DB::table('quick_tips')->get(); // Change to ->get() if you want to get all rows
-   
+
     $section2Data = DB::table('section_2')->first(); 
 
     $section3Data = DB::table('section_3')->first(); 
@@ -846,11 +847,15 @@ public function home(Request $request)
 
     $validatedData = $request->validate([
 
-        'quicktipsHeading.*' => 'nullable|string',
-        'quicktipsID.*' => 'nullable|string',
+        'quicktipsHeading' => 'required|array',
+        'quicktipsHeading.*' => 'required|string',
+        'quicktipsID' => 'nullable|array',
+        'quicktipsID.*' => 'nullable|integer',
+        'quicktipsText' => 'nullable|array',
         'quicktipsText.*' => 'nullable|string',
-        'inputquicktipsimage' => 'required|array',
+        'inputquicktipsimage' => 'nullable|array',
         'inputquicktipsimage.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:92048', 
+        'selectedIconNameqt' => 'nullable|array',
         'selectedIconNameqt.*' => 'nullable|string',
 
     ]);
@@ -876,30 +881,50 @@ public function home(Request $request)
             Log::info(" \n quicktipsID: " . ($validatedData['quicktipsID'][$i]));
         }
     }
-    
-        function addnewtable($quickTipData)
+        function addOrUpdateRecord($quickTipData)
         {
-        if (!empty($quickTipData)) {
-                $quickTip = new QuickTip(); // Assuming QuickTip is your Eloquent model
+            if (!empty($quickTipData)) {
+                // Check if quicktipsID is provided
+                if (isset($quickTipData['quicktipsID'])) {
+                    $existingRecord = QuickTip::find($quickTipData['quicktipsID']);
+                    if ($existingRecord) {
+                        // Update existing record
+                        if (isset($quickTipData['image'])) {
+                        $existingRecord->image = $quickTipData['image'];
+                        }
+                        if (isset($quickTipData['title'])) {
+                            $existingRecord->title = $quickTipData['title'];
+                        }
+                        if (isset($quickTipData['text'])) {
+                            $existingRecord->text = $quickTipData['text'];
+                        }
+                        if (isset($quickTipData['icon'])) {
+                            $existingRecord->icon = $quickTipData['icon'];
+                        }
+                        $existingRecord->save();
+                        return;
+                    }
+                }
+                $quickTip = new QuickTip();
                 if (isset($quickTipData['image'])) {
-                        Log::info(" adding imageeee ****************** to DB ");
-                $quickTip->image = $quickTipData['image'];
-            }
-            if (isset($quickTipData['title'])) {
+                    Log::info(" adding imageeee ****************** to DB ");
+                    $quickTip->image = $quickTipData['image'];
+                }
+                if (isset($quickTipData['title'])) {
                     $quickTip->title = $quickTipData['title'];
-            }
-            if (isset($quickTipData['text'])) {
+                }
+                if (isset($quickTipData['text'])) {
                     $quickTip->text = $quickTipData['text'];
+                }
+                if (isset($quickTipData['icon'])) {
+                    $quickTip->icon = $quickTipData['icon'];
+                }   
+            
+                $quickTip->save();
             }
-            if (isset($quickTipData['icon'])) {
-                $quickTip->icon = $quickTipData['icon'];
-            }
-                    $quickTip->save();
-        
         }
-    }
 
-for ($i = 0; $i < count($validatedData['quicktipsHeading'])-1; $i++) {
+for ($i = 0; $i < count($validatedData['quicktipsHeading']); $i++) {
     $quickTipData = [];       
     
     // Adding other quick tip data
@@ -924,35 +949,25 @@ for ($i = 0; $i < count($validatedData['quicktipsHeading'])-1; $i++) {
         Log::info(" image 1111");
         $image = $request->file("inputquicktipsimage.{$i}");
 
-    $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+        $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+        $originalFilenameWithoutSpaces = str_replace(' ', '', $originalFilename);
 
-    $filename = now()->format('YmdHisu') . mt_rand(1000, 9999) . '_' . $originalFilename . '.' . $image->getClientOriginalExtension();
 
-    $imagePath = public_path('storage/images') . '/' . $filename;
+        $filename = now()->format('YmdHisu') . mt_rand(1000, 9999) . '_' . $originalFilenameWithoutSpaces . '.' . $image->getClientOriginalExtension();
 
-    $image->move(public_path('storage/images'), $filename);
+        $imagePath = public_path('storage/images') . '/' . $filename;
 
-    $quickTipData['image'] = 'images/' . $filename;
+        $image->move(public_path('storage/images'), $filename);
 
+        $quickTipData['image'] = 'images/' . $filename;
     }
 
     if (!empty($quickTipData)) {
-        Log::info(" quickTipData");
-
-        if(!$quickTipData['quicktipsID']){
-            Log::info("quicktipsID");
-            addnewtable($quickTipData);
-
-        }
+        addOrUpdateRecord($quickTipData);
     }
 }
 
-
-
-
     return redirect()->back()->with('success', 'Form submitted successfully.');
-
-
 
 }
  

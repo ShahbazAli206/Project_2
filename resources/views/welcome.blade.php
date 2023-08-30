@@ -89,11 +89,75 @@
             </div>
         </nav>
         <div id="content">
-            @if(session('success'))
+        @if(session('success'))
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title text-white" id="successModalLabel">Success Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-light">
+                    <p>{{ session('success') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+<script>
+    $(document).ready(function() {
+        $('#successModal').modal('show');
+    });
+</script>
+
+            <!-- @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
+@endif -->
+
+    <!-- @if($errors->any())
+    <div class="alert alert-danger">
+        Validation failed. Please check your input. :: {{$errors->message}}
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif -->
+@if($errors->any())
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title text-white" id="errorModalLabel">Validation Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-light">
+                    <p>Validation failed. Please check your input:</p>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 @endif
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        @if($errors->any())
+            $('#errorModal').modal('show');
+        @endif
+    });
+</script>
             <div class="cp-5">
                 <div class="d-flex justify-content-between align-items-center mb-42">
                     <div>
@@ -176,6 +240,9 @@
                         <div class="col-md-4">
                             <div class="title-8 text-color-black-shade mb-20">Tip Heading</div>
                             <textarea name="quicktipsHeading[{{ $index }}]" id="quicktipsHeading[{{ $index }}]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade">{{ $quickTip->title }}</textarea>
+                            @error("quicktipsHeading.$index")
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-7 display-table">
                             <div class="vertical-middle">
@@ -183,13 +250,19 @@
                                 <textarea name="quicktipsText[{{ $index }}]" id="quicktipsText[{{ $index }}]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade">{{ $quickTip->text }}</textarea>
                             </div>
                         </div>
+                        <div class="col-md-1 text-center align-self-center">
+        <!-- Delete Icon -->
+        <button class="btn btn-danger delete-tip"  >
+            <i class="fa fa-trash"></i>
+        </button>
+    </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="title-8 text-color-black-shade mb-10">Tip Image</div>
                             <label for="imageInputQT[{{ $index }}]">      
                                 <div class="image-upload-div text-center mb-20 cp-7 ">
-                                    <img src="{{$quickTip->image ?? 'assets/images/image-plus.png'}}" alt="" onerror="this.src='assets/images/image-plus.png';" style="height:200px" id="uploadedImageQT[{{ $index }}]" name="quicktipsImage[{{ $index }}]" class="">
+                                <img src="{{ asset('storage/' .$quickTip->image ?? 'assets/images/image-plus.png') }}" alt="" onerror="this.src='assets/images/image-plus.png';" style="height:200px" id="uploadedImageQT[{{ $index }}]" name="quicktipsImage[{{ $index }}]" class="">
                                 </div>
                             </label>
                             <input type="file" name="inputquicktipsimage[{{ $index }}]"  id="imageInputQT[{{ $index }}]" style="display: none">
@@ -229,12 +302,12 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="title-8 text-color-black-shade mb-20">Tip Heading</div>
-                                <textarea name="quicktipsHeading[1111]" id="quicktipsHeading[1111]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
+                                <textarea name="DummyquicktipsHeading2222" id="quicktipsHeading[1111]" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
                             </div>
                             <div class="col-md-7 display-table">
                                 <div class="vertical-middle">
                                     <div class="title-8 text-color-black-shade mb-10">Tip Text</div>
-                                    <textarea name="quicktipsText[1111]" id="quicktipsText[1111]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade"></textarea>
+                                    <textarea name="DummyquicktipsText2222" id="quicktipsText[1111]" rows="2" placeholder="Type text here...." class="myinput5 mb-20 title-9 text-color-black-shade"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +330,7 @@
                                         <option value="{{ $icon }}">{{ $icon }}</option>
                                     @endforeach
                                 </select>
-                                <input type="hidden" name="selectedIconNameqt[1111]" id="selectedIconNameqt1111" value="">
+                                <input type="hidden" name="DummyselectedIconNameqt2222" id="selectedIconNameqt1111" value="">
                                 <div class="col-md-3" >
                                     <div class="image-upload-div text-center mb-15 selected-iconqt mt-3" >
                                         <i id="selectedIcon1111" style=" font-size: 124px;" class=""></i>
@@ -434,24 +507,16 @@
 
                 <div class="row">
                     <div class="col-md-3 display-table mb-30">
-
                     <label for="cardimagesection3" >
                         <div class="image-upload-div text-center height-100">
                             <img src="assets/images/photo.png" alt="" width="240px" class="mb-60" id="uploadedcardImagesection3">
                             <div class="title-9  text-color-black-shade">Image will be cropped to aspect ratio 4:3</div>
                         </div>
-
                     </label>
                     <input type="file" name="cardimagesection3"  id="cardimagesection3" style="display: none">
 
-
                     </div>
                     <div class="col-md-9">
-                        <!-- <div class="d-flex align-items-end mb-34">
-                            <img src="assets/images/photo.png" alt="" width="50px" class="">
-                            <div class="title-9 text-color-black-shade ml-13">Card icon</div>
-                        </div> -->
-
                         <div class="d-flex align-items-end mb-34">
                             <img src="assets/images/photo.png" alt="" width="50px" class="" id="iconImage">
                             <div class="title-9 text-color-black-shade ml-13">Card icon</div>
@@ -467,12 +532,7 @@
                         </select>
                         <input type="hidden" name="selectedIconName" id="selectedIconName" value="">
                         <div class="selected-icon mt-3">
-                            <!-- Selected icon will be displayed here -->
                         </div>
-
-                       
- 
-
 
                         <div class="col-md-6 p-0">
                             <input type="text" rows="2" name="cardtitlesection3" placeholder="Card Title" class="myinput5 mb-30 title-9 text-color-black-shade">
@@ -594,7 +654,7 @@
         const addTipButton = document.querySelector('.titlle-10');
         const totalqtInput = document.getElementById('totalqt');
         
-        let tipNumber = parseInt(totalqtInput.value) || 1;
+        let tipNumber = parseInt(totalqtInput.value) || 0;
         
         addTipButton.addEventListener('click', function () {
             const templateContent = quickTipsTemplate.innerHTML;
@@ -625,7 +685,9 @@
     // .replace(/name="quicktipsimage1111"/g, `name="quicktipsimage${number}"`)
     .replace(/id="iconDropdownqt1111"/g, `id="iconDropdownqt${number}"`)
     .replace(/id="selectedIconNameqt1111"/g, `id="selectedIconNameqt${number}"`)
-    .replace(/name="selectedIconNameqt1111"/g, `name="selectedIconNameqt${number}"`)
+    .replace(/name="DummyselectedIconNameqt2222"/g, `name="selectedIconNameqt${number}"`)
+    .replace(/name="DummyquicktipsHeading2222"/g, `name="quicktipsHeading[${number}]"`)
+    .replace(/name="DummyquicktipsText2222"/g, `name="quicktipsText[${number}]"`)
     .replace(/id="selectedIcon1111"/g, `id="selectedIcon${number}"`);
         return clonedContent;  
     }
