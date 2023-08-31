@@ -128,10 +128,10 @@
     </div>
     <div class="clearfix"></div>
     <div class="home-header" style="background: url('{{ asset('storage/' . $section1Data->backgroundImage) }}');  background-size: cover; background-repeat: no-repeat; background-position: center;">
-        <div class="title-1 text-center text-color-black mb-10">{{$section1Data->heading}}</div>
-        <div class="title-2 text-center text-color-black">{{$section1Data->bodyText}}</div>
+        <div class="title-1 text-center text-color-white mb-10">{{$section1Data->heading}}</div>
+        <div class="title-2 text-center text-color-white">{{$section1Data->bodyText}}</div>
     </div>
-    <div class="bg-black-shade p-2">
+    <div class="bg-black-shade p-5 ">
         <div class="title-1 text-center text-color-white mb-10">QUICK TIPS</div>
         
             <!-- <div class="icons">
@@ -141,13 +141,15 @@
             </div> -->
             <div class="row">
     @foreach ($quick_tips as $index => $quick_tip)
-        <div class="col-3 mb-3">
-            <span class="icon d-block text-center" id="icon{{ $index + 1 }}">
-                <i class="{{$quick_tip->icon}}" style="color: white; font-size: 24px;"></i>
-            </span>
-        </div>
+    <div class="col-3 mb-3">
+    <div class="d-flex justify-content-center">
+        <span class="icon d-block text-center" id="icon{{ $index + 1 }}">
+            <i class="{{$quick_tip->icon}}" style="color: white; font-size: 24px;"></i>
+        </span>
+    </div>
+</div>
         @if (($index + 1) % 4 == 0)
-            </div><div class="row justify-content-center">
+            </div><div class="row justify-content-left">
         @endif
     @endforeach
 </div>
@@ -220,13 +222,7 @@
             <div class="title-3 text-center text-color-white mb-40">
             {{$section2Data->text_2}}
             </div>
-            <!-- <div style=" ">
-                <iframe width="90%" height="40%" src="{{$section2Data->video_url}}" frameborder="0" allowfullscreen></iframe>
-            </div> -->
             <div id="youtube-player" style="display: flex; justify-content: center; align-items: center; padding: 20px;"></div>
-
-
-            <!-- <img src="assets2/images/about-video.png" alt="" class="img-responsive"> -->
         </div>
     </div>
 

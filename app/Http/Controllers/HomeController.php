@@ -804,15 +804,32 @@ class HomeController extends Controller
             "fab fa-yoast",
             "fab fa-youtube"
         ];
-        $quick_tips = DB::table('quick_tips')->get(); // Change to ->get() if you want to get all rows
-        // Log::info('hi im in  $quick_tips here' . json_encode($quick_tips) );
-        $totalqt = DB::table('quick_tips')->count();
-        Log::info("\n\n *** Quick  ***" . json_encode($quick_tips));
 
-        return view('welcome', compact('icons'), [
-            'quick_tips' => $quick_tips,
-            'totalqt' => $totalqt,
-            ] );
+    $section1Data = DB::table('section_1')->first(); 
+
+    $quick_tips = DB::table('quick_tips')->get(); 
+
+    $section2Data = DB::table('section_2')->first(); 
+
+    $section3Data = DB::table('section_3')->first(); 
+
+    $sectioncards = DB::table('sectioncards')->get(); 
+
+    $section4Data = DB::table('section_4')->first(); 
+        
+    $totalqt = DB::table('quick_tips')->count();
+
+ Log::info('hi im in quicktipsHeading  here '. json_encode($sectioncards) );
+
+    return view('welcome', compact('icons'), [
+        'section1Data' => $section1Data,
+        'quick_tips' => $quick_tips, 
+        'section2Data' => $section2Data, 
+        'section3Data' => $section3Data, 
+        'sectioncards' => $sectioncards, 
+        'section4Data' => $section4Data,
+        'totalqt' => $totalqt,
+        ]);
     }
 
     public function welcome()

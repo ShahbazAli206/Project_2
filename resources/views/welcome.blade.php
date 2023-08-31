@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="assets/css/margins.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />  
-  
+    <script src="https://www.youtube.com/iframe_api"></script>
+
 </head>
 
 <body class="">
@@ -205,18 +206,17 @@
 
                 <div class="image-upload-div text-center mb-30">
                    <label for="imageInputsection1">
-                        <img src="assets/images/photo.png" alt="" width="118px" class="mb-60" id="uploadedImagesection1">
+                        <img src="{{asset('storage/' .$section1Data->backgroundImage ?? 'assets/images/photo.png')}}" alt="" width="188px" class="mb-30" id="uploadedImagesection1">
                         <div class="title-9 text-color-black-shade">Image will be cropped to aspect ratio 16:9</div>
                     </label>
                     <input type="file" name="section1image"  id="imageInputsection1" style="display: none">
                 </div>
 
                 <div class="title-8 text-color-black-shade mb-20">Banner Heading</div>
-                <textarea name="section1Heading" id="section1Heading" rows="2" placeholder="e.g WELCOME" class="myinput5 mb-30 title-9 text-color-black-shade"></textarea>
+                <textarea name="section1Heading" id="section1Heading" rows="2" placeholder="e.g WELCOME" class="myinput5 mb-30 title-9 text-color-black-shade">{{ $section1Data->heading }}</textarea>
                 <div class="title-8 text-color-black-shade mb-20">Banner Text</div>
-                <textarea name="section1text"  id="section1text" rows="4" placeholder="Type text here...." class="myinput5 mb-100 title-9 text-color-black-shade"></textarea>
+                <textarea name="section1text"  id="section1text" rows="4" placeholder="Type text here...." class="myinput5 mb-100 title-9 text-color-black-shade">{{ $section1Data->bodyText }}</textarea>
             </div>
-            
 
             <!-- ++++++++++++++^^^^^^^^^^^^^^***********&&&&&&&&&&&&&&& -->
             <!-- ++++++++++++++^^^^^^^^^^^^^^***********&&&&&&&&&&&&&&& -->
@@ -383,87 +383,77 @@
             </div>
             <div class="cp-5">
                 <div class="title-8 text-color-black-shade mb-20">Section Heading</div>
-                <textarea name="section2Heading" id="section2Heading" rows="5" placeholder="Type text here...." class="myinput5 mb-40 title-9 text-color-black-shade"></textarea>
+                <textarea name="section2Heading" id="section2Heading" rows="5" placeholder="Type text here...." class="myinput5 mb-40 title-9 text-color-black-shade">{{ $section2Data->heading }}</textarea>
                 <div class="title-8 text-color-black-shade mb-20">Section Text</div>
-                <textarea name="section2Text" id="section2Text" rows="5" placeholder="Type text here...." class="myinput5 mb-70 title-9 text-color-black-shade"></textarea>
+                <textarea name="section2Text" id="section2Text" rows="5" placeholder="Type text here...." class="myinput5 mb-70 title-9 text-color-black-shade">{{ $section2Data->bodyText }}</textarea>
                 <div class="title-8 text-color-black-shade mb-20">Main Image</div>
-
                     <label for="imageInputsection2"  class="col-md-3">
                         <div class="image-upload-div text-center mb-30  ">
-                          <img src="assets/images/image-plus.png" alt="" width="240px"  style="height:200px"  class="" id="uploadedImagesection2">
+                        <img src="{{ asset('storage/' . ($section2Data->image ? $section2Data->image : 'images/image-plus.png')) }}" alt="" width="240px" style="height: 200px;" class="" id="uploadedImagesection2">
                         </div>
                     </label>
                     <input type="file" name="section2image"  id="imageInputsection2" style="display: none">
-
                 <div class="title-8 text-color-black-shade mb-20">Slider Images</div>
                 <div class="row">
-
                     <div class="col-md-3" >
                         <div class="image-upload-div text-center mb-15  "> 
                                 <label for="sliderimage1Inputsection2"   >
-                                <img src="assets/images/image-plus.png" alt="" width="240px" style="height:200px" id="sliderimage1uploadedsection2">
+                                <img src="{{ asset('storage/' . ($section2Data->sliderimage1 ? $section2Data->sliderimage1 : 'images/image-plus.png')) }}" alt="" width="240px" style="height:200px" id="sliderimage1uploadedsection2">
                             </label>
                             </div>
                         <input type="file" name="section2Slideimage1"  id="sliderimage1Inputsection2" style="display: none">
                     </div>
                     <div class="col-md-3">
-
                         <div class="image-upload-div text-center mb-15  ">
                                 <label for="sliderimage2Inputsection2"  class="col-md-12">
-                                <img src="assets/images/image-plus.png" alt="" width="240px" style="height:200px"  id="sliderimage2uploadedsection2" >
+                                <img src="{{ asset('storage/' . ($section2Data->sliderimage2 ? $section2Data->sliderimage2 : 'images/image-plus.png')) }}" alt="" width="240px" style="height:200px"  id="sliderimage2uploadedsection2" >
                             </label>
                             </div>
                         <input type="file" name="section2Slideimage2"  id="sliderimage2Inputsection2" style="display: none">
                     </div>
-
-
                     <div class="col-md-3">
-
                         <div class="image-upload-div text-center mb-15 ">
                             <label for="sliderimage3Inputsection2"  class="col-md-12">
-                                <img src="assets/images/image-plus.png" alt="" width="240px"  style="height:200px"  id="sliderimage3uploadedsection2" class="">
+                                <img src="{{ asset('storage/' . ($section2Data->sliderimage3 ? $section2Data->sliderimage3 : 'images/image-plus.png')) }}" alt="" width="240px"  style="height:200px"  id="sliderimage3uploadedsection2" class="">
                             </label>
                         </div>
                         <input type="file" name="section2Slideimage3"  id="sliderimage3Inputsection2" style="display: none">
                     </div>
-
-
                     <div class="col-md-3">
-
                         <div class="image-upload-div text-center mb-15 ">
                             <label for="sliderimage4Inputsection2"  class="col-md-12">
-                                <img src="assets/images/image-plus.png" alt="" width="240px"  style="height:200px" id="sliderimage4uploadedsection2" class="">
+                                <img src="{{ asset('storage/' . ($section2Data->sliderimage4 ? $section2Data->sliderimage4 : 'images/image-plus.png')) }}" alt="" width="240px"  style="height:200px" id="sliderimage4uploadedsection2" class="">
                             </label>
                         </div>
                         <input type="file" name="section2Slideimage4"  id="sliderimage4Inputsection2" style="display: none">
                     </div>
                 </div>
                 <div class="title-8 text-color-black-shade mb-20">Secondary Text</div>
-                <textarea name="section2Text2" id="section2Text2" rows="2" placeholder="Type text here...." class="myinput5 mb-100 title-9 text-color-black-shade"></textarea>
+                <textarea name="section2Text2" id="section2Text2" rows="2" placeholder="Type text here...." class="myinput5 mb-100 title-9 text-color-black-shade">{{ $section2Data->text_2 }}</textarea>
                 <div class="title-8 text-color-black-shade mb-20">Video</div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="image-upload-div text-center mb-30 cp-7 ">
-                            <img src="assets/images/video.png" alt="" width="" class="">
+                        <div class="image-upload-div text-center mb-30 p-0 pt-1">
+                            @if ($section2Data->video_url)
+                                <div id="youtube-player" style="min-height:300px"></div>
+                            @else
+                                <img src="assets/images/video.png" alt="N/A">
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-8 display-table">
                         <div class="vertical-middle">
                             <div class="title-9 text-color-black-shade mb-30">YouTube URL</div>
-                            <textarea name="section2YoutubeURL" id="section2YoutubeURL" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade"></textarea>
+                            <textarea name="section2YoutubeURL" id="section2YoutubeURL" rows="1" placeholder="Enter URL here" class="myinput5 title-9 text-color-black-shade">{{ $section2Data->video_url }}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
 
-            
             <!-- ++++++++++++++^^^^^^^^^^^^^^***********&&&&&&&&&&&&&&& -->
             <!-- ++++++++++++++^^^^^^^^^^^^^^***********&&&&&&&&&&&&&&& -->
             <!-- ****************** section 3 ********************** -->
             <!-- ++++++++++++++^^^^^^^^^^^^^^***********&&&&&&&&&&&&&&& -->
-
-
-
             <div class="bg-yellow mb-10">
                 <div class="cp-6">
                     <div class="title-7 text-color-black-shade">Section 3: About the hotel</div>
@@ -471,11 +461,11 @@
             </div>
             <div class="cp-5 mb-50">
                 <div class="title-8 text-color-black-shade mb-20">Section Heading</div>
-                <textarea name="section3Heading" id="" rows="4" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade"></textarea>
+                <textarea name="section3Heading" id="" rows="4" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade">{{ $section3Data->heading }}</textarea>
                 <div class="title-8 text-color-black-shade mb-20">Section Text</div>
-                <textarea name="section3Text" id="" rows="4" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade"></textarea>
+                <textarea name="section3Text" id="" rows="4" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade">{{ $section3Data->bodyText }}</textarea>
                 <div class="title-8 text-color-black-shade mb-20">Section Button Text</div>
-                <textarea name="section3buttonText" id="" rows="2" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade"></textarea>
+                <textarea name="section3buttonText" id="" rows="2" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade">{{ $section3Data->buttonText }}</textarea>
                 <div class="title-8 text-color-black-shade mb-20">Section Button Link</div>
                 <div class="row">
                     <div class="col-md-3">
@@ -494,8 +484,6 @@
                 <div class="title-8 text-color-black-shade mb-20">Section Cards</div>
                 <div id="card-section-template">
 
-
-                   <!-- Your entire card section code goes here -->
                    <div class="d-flex align-items-center mb-20">
                     <div>
                         <img src="assets/images/dots.png" alt="">
@@ -508,7 +496,7 @@
                     <div class="col-md-3 display-table mb-30">
                     <label for="cardimagesection3" >
                         <div class="image-upload-div text-center height-100">
-                            <img src="assets/images/photo.png" alt="" width="240px" class="mb-60" id="uploadedcardImagesection3">
+                            <img src="{{ asset('storage/' . ($sectioncards[0]->backgroundimage ? $sectioncards[0]->backgroundimage : 'images/image-plus.png')) }}" alt="" width="240px" class="mb-60" id="uploadedcardImagesection3">
                             <div class="title-9  text-color-black-shade">Image will be cropped to aspect ratio 4:3</div>
                         </div>
                     </label>
@@ -517,28 +505,32 @@
                     </div>
                     <div class="col-md-9">
                         <div class="d-flex align-items-end mb-34">
+                        <div class="selected-icon mt-3">
+                        @if ($sectioncards[0]->cardIcon)
+                            <i class="{{ $sectioncards[0]->cardIcon }}" style=" font-size: 100px;"></i>
+                        @else
                             <img src="assets/images/photo.png" alt="" width="50px" class="" id="iconImage">
+                        @endif
+                        </div>
                             <div class="title-9 text-color-black-shade ml-13">Card icon</div>
                         </div>
 
-                        <input type="text" id="iconSearchhh" placeholder="Search for an icon...">
+                        <input type="text" id="iconSearchhh" placeholder="Filter icon name here ...">
 
                         <select id="iconDropdownnn" name="iconDropdownnn" >
                             <option value="">Select an icon</option>
                             @foreach ($icons as $icon)
-                                <option value="{{ $icon }}">{{ $icon }}</option>
+                                <option value="{{ $icon }}" @if ($icon == $sectioncards[0]->cardIcon) selected @endif >{{ $icon }}</option>
                             @endforeach
                         </select>
-                        <input type="hidden" name="selectedIconName" id="selectedIconName" value="">
-                        <div class="selected-icon mt-3">
-                        </div>
 
-                        <div class="col-md-6 p-0">
-                            <input type="text" rows="2" name="cardtitlesection3" placeholder="Card Title" class="myinput5 mb-30 title-9 text-color-black-shade">
+                        <input type="hidden" name="selectedIconName" id="selectedIconName" value="">
+                        <div class="col-md-6 mt-3 p-0">
+                            <input type="text" rows="2" name="cardtitlesection3" placeholder="Card Title"  value="{{$sectioncards[0]->cardTitle }}" class="myinput5 mb-30 title-9 text-color-black-shade">
                         </div>
-                        <textarea name="cardtextsection3" id="" rows="2" placeholder="Card Text" class="myinput5 mb-30 title-9 text-color-black-shade"></textarea>
+                        <textarea name="cardtextsection3" id="" rows="2" placeholder="Card Text" class="myinput5 mb-30 title-9 text-color-black-shade">{{ $sectioncards[0]->cardText }}</textarea>
                         <div class="title-8 text-color-black-shade mb-20">Card Button Text</div>
-                        <textarea name="cardbuttontextsection3" id="" rows="1" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade"></textarea>
+                        <textarea name="cardbuttontextsection3" id="" rows="1" placeholder="Type text here...." class="myinput5 mb-30 title-9 text-color-black-shade">{{ $sectioncards[0]->buttonText }}</textarea>
                         <div class="title-8 text-color-black-shade mb-20">Section Button Link</div>
                         <div class="row">
                             <div class="col-md-4">
@@ -861,6 +853,7 @@
                 reader.readAsDataURL(file);
             }
         });
+        onYouTubeIframeAPIReady();
     });
 </script>
 
@@ -890,6 +883,59 @@
         iconDropdown.innerHTML = `<option value="">Select an icon</option>${dropdownOptions}`;
     });
 </script>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+    console.log("this is onYou***********8APIReady ::: ");
+    // This function creates an <iframe> (and YouTube player)
+// after the API code downloads.
+function onYouTubeIframeAPIReady() {
+    console.log("this is onYouTubeIframeAPIReady ::: ");
+
+        var videoUrl = '{{$section2Data->video_url}}';
+        var videoId = getYouTubeVideoId(videoUrl);
+
+        if (videoId) {
+            console.log("this is ID ::: ", videoId);
+            var player = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '90%',
+                videoId: videoId,
+                playerVars: {
+                    'rel': 0, // Disable related videos at the end
+                    'controls': 1 // Show video controls
+                }
+            });
+        }
+    }
+
+    // Extract YouTube video ID from URL
+    function getYouTubeVideoId(url) {
+        console.log("this is url ::: ", url);
+
+        var videoIdRegex = /[?&]v=([^&#]*)/;
+        var shortLinkRegex = /youtu\.be\/([^\/]*)/;
+        var match = url.match(videoIdRegex) || url.match(shortLinkRegex);
+        return match && match[1];
+    }
+
+    // var player;
+    // function onYouTubeIframeAPIReady() {
+    //     var videoUrl = "{{ $section2Data->video_url }}";
+    //     var videoId = videoUrl.match(/youtu\.be\/([^?]+)/)[1];
+    //     var startTime = parseInt(videoUrl.match(/t=(\d+)/)[1]);
+        
+    //     player = new YT.Player('youtube-player', {
+    //         height: '200',
+    //         width: '240',
+    //         videoId: videoId,
+    //         playerVars: {
+    //             start: startTime,
+    //         },
+    //     });
+    // }
+</script>
+
 
 </body>
 </html>
